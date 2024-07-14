@@ -1,3 +1,9 @@
+# Git
+
+| Keybind          | Action       |
+| ---------------- | ------------ |
+| `space + l -> g` | Open LazyGit |
+
 # Telescope
 
 | Keybind           | Action           |
