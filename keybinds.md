@@ -86,4 +86,7 @@ Visual Mode
 
 # File tree
 
-`ctrl + e` -- Open file tree on the left
+| Keybind    | Action                       |
+| ---------- | ---------------------------- |
+| `ctrl + e` | Open file tree on the right  |
+| `ctrl + r` | Close file tree on the right |

@@ -6,8 +6,11 @@ return {
 		"nvim-tree/nvim-web-devicons",
 		"MunifTanjim/nui.nvim",
 	},
-	config = function()
-		vim.keymap.set("n", "<C-e>", ":Neotree filesystem reveal left<CR>", {})
-		-- vim.keymap.set("n", "<C-w>", ":Neotree filesystem close left<CR>", {})
-	end,
+	cmd = {
+		"Neotree",
+	},
+	keys = {
+		{ "<C-e>", "<cmd>Neotree filesystem reveal right<CR>", desc = "Open filesystem to the right" },
+		{ "<C-r>", "<cmd>Neotree filesystem close right<CR>", desc = "Close filesystem to the right" },
+	},
 }
