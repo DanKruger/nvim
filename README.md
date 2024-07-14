@@ -1,7 +1,7 @@
 # Install
 
 ```bash
-git clone git@github.com:DanKruger/nvim.git ~/.config/
+git clone git@github.com:DanKruger/nvim.git ~/.config/nvim
 cd ~/.config/nvim && nvim
 ```
 
