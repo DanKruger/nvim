@@ -1,10 +1,12 @@
-# Git
+# Keybinds
+
+## Git
 
 | Keybind          | Action       |
 | ---------------- | ------------ |
 | `space + l -> g` | Open LazyGit |
 
-# Telescope
+## Telescope
 
 | Keybind           | Action           |
 | ----------------- | ---------------- |
@@ -13,7 +15,7 @@
 | `g -> r`          | Find references  |
 | `space -> w`      | Save file        |
 
-# Tab navigation
+## Tab navigation
 
 | Keybind    | Action                     |
 | ---------- | -------------------------- |
@@ -22,7 +24,7 @@
 | `ctrl + t` | Create new tab             |
 | `ctrl + x` | Close current tab          |
 
-# Window management
+## Window management
 
 | Keybind      | Action                        |
 | ------------ | ----------------------------- |
@@ -30,7 +32,7 @@
 | `space -> j` | Create new window below       |
 | `space -> q` | Close window (same as :q)     |
 
-# Window resizing
+## Window resizing
 
 | Keybind       | Action                 |
 | ------------- | ---------------------- |
@@ -39,7 +41,7 @@
 | `alt + up`    | Increase window height |
 | `alt + left`  | Decrease window height |
 
-# Window navigation
+## Window navigation
 
 | Keybind   | Action                        |
 | --------- | ----------------------------- |
@@ -48,14 +50,14 @@
 | `alt + k` | Switch to window above        |
 | `alt + j` | Switch to window below        |
 
-# Running Code Tests
+## Running Code Tests
 
 | Keybind      | Action                   |
 | ------------ | ------------------------ |
 | `space -> n` | Run the nearest TestCase |
 | `space -> m` | Run the whole Test file  |
 
-# Code editing
+## Code editing
 
 | Keybind           | Action                              |
 | ----------------- | ----------------------------------- |
@@ -65,7 +67,7 @@
 | `ctrl + n`        | Code actions                        |
 | `ctrl + e`        | Show completions                    |
 
-# Commenting
+## Commenting
 
 Insert Mode
 
@@ -84,7 +86,7 @@ Visual Mode
 | `g -> c` | Comment all selected lines   |
 | `g -> b` | Block comment selected lines |
 
-# File tree
+## File tree
 
 | Keybind    | Action                       |
 | ---------- | ---------------------------- |
