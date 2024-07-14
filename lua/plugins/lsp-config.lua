@@ -10,7 +10,7 @@ return {
         config = function()
             require("mason-tool-installer").setup({
                 -- Install necessary formatters and linters
-                ensure_installed = { "shfmt", "biome", "prettier", "black", "checkstyle", "pylint" },
+                ensure_installed = { "shfmt", "prettier", "black", "checkstyle", "pylint" },
             })
         end,
     },
@@ -18,6 +18,7 @@ return {
         "williamboman/mason-lspconfig.nvim",
         config = function()
             require("mason-lspconfig").setup({
+                automatic_installation = true,
                 -- Install necessary LSP
                 ensure_installed = {
                     "lua_ls",
@@ -27,7 +28,7 @@ return {
                     "tsserver",
                     "cssls",
                     "html",
-                    "markdown_oxide", -- Markdown lsp
+                    "markdown_oxide",
                     "jdtls",
                 },
             })
@@ -47,13 +48,9 @@ return {
             lsp_config.lua_ls.setup({ capabilities = capabilities })
             lsp_config.jdtls.setup({ capabilities = capabilities })
             lsp_config.markdown_oxide.setup({ capabilities = capabilities })
-            lsp_config.prettier.setup({
-                cli_options = {
-                    tab_width = 4,
-                },
-            })
-            vim.keymap.set("n", "I", vim.lsp.buf.hover, {})
-            vim.keymap.set({ "n", "v" }, "<C-n>", vim.lsp.buf.code_action, {})
+
+            vim.keymap.set("n", "I", vim.lsp.buf.hover, {})           -- Shift + i
+            vim.keymap.set({ "n", "v" }, "<C-n>", vim.lsp.buf.code_action, {}) -- Control + n
         end,
     },
 }
