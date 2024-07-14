@@ -2,7 +2,7 @@
 
 ```bash
 git clone git@github.com:DanKruger/nvim.git ~/.config/
-cd nvim && nvim
+cd ~/.config/nvim && nvim
 ```
 
 # Keybinds
