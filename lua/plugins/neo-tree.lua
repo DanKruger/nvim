@@ -10,7 +10,6 @@ return {
 		"Neotree",
 	},
 	keys = {
-		{ "<C-e>", "<cmd>Neotree filesystem reveal right<CR>", desc = "Open filesystem to the right" },
-		{ "<C-r>", "<cmd>Neotree filesystem close right<CR>", desc = "Close filesystem to the right" },
+		{ "<C-e>", "<cmd>Neotree filesystem reveal left<CR>", desc = "Open filesystem to the left" },
 	},
 }
