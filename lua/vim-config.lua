@@ -6,9 +6,14 @@ vim.cmd("set scrolloff=10")
 
 vim.g.mapleader = " "                      -- Set the leader key
 vim.keymap.set("n", "<leader>w", ":w<CR>") -- Write File (Save)
+vim.opt.updatetime = 100                   -- Set buffer update time
+
 -- Line number configuration
 vim.opt.number = true
-vim.opt.statuscolumn = '%#NonText# %{&nu?v:lnum:""} %='
+vim.opt.relativenumber = true
+vim.opt.signcolumn = "auto:9"
+
+--[[ vim.opt.statuscolumn = '%#NonText# %{&nu?v:lnum:""} %=' ]]
 
 -- Tab navigation
 vim.keymap.set("n", "<C-j>", ":tabp<CR>") -- Switch to tab on left
