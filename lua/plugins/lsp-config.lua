@@ -36,6 +36,11 @@ return {
     },
     {
         "neovim/nvim-lspconfig",
+        event = { "BufReadPre", "BufNewFile" },
+        dependencies = {
+            { "antosha417/nvim-lsp-file-operations", config = true },
+            { "folke/neodev.nvim",                   opts = {} },
+        },
         config = function()
             local capabilities = require("cmp_nvim_lsp").default_capabilities()
             local lsp_config = require("lspconfig")
