@@ -15,6 +15,10 @@ vim.opt.rtp:prepend(lazypath)
 -- load plugins
 require("vim-config")
 require("lazy").setup("plugins", {
+	checker = {
+		enabled = true,
+		notify = false,
+	},
 	change_detection = {
 		notify = false,
 	},
