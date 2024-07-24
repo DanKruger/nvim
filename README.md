@@ -24,12 +24,12 @@ cd ~/.config/nvim && nvim
 
 ## Tab navigation
 
-| Keybind    | Action                     |
-| ---------- | -------------------------- |
-| `ctrl + j` | Switch to tab on left      |
-| `ctrl + k` | Switch to tab on the right |
-| `ctrl + t` | Create new tab             |
-| `ctrl + x` | Close current tab          |
+| Keybind   | Action                     |
+| --------- | -------------------------- |
+| `alt + j` | Switch to tab on left      |
+| `alt + k` | Switch to tab on the right |
+| `alt + t` | Create new tab             |
+| `alt + x` | Close current tab          |
 
 ## Window management
 
@@ -98,3 +98,10 @@ Visual Mode
 | Keybind    | Action                     |
 | ---------- | -------------------------- |
 | `ctrl + e` | Open file tree on the left |
+
+## Sessions
+
+| Keybind           | Action                    |
+| ----------------- | ------------------------- |
+| `space -> s -> s` | Save the current session  |
+| `space -> s -> r` | Reload last saved session |
