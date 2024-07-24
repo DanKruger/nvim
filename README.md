@@ -50,12 +50,12 @@ cd ~/.config/nvim && nvim
 
 ## Window navigation
 
-| Keybind   | Action                        |
-| --------- | ----------------------------- |
-| `alt + l` | Switch to window on the right |
-| `alt + h` | Switch to window on the left  |
-| `alt + k` | Switch to window above        |
-| `alt + j` | Switch to window below        |
+| Keybind    | Action                        |
+| ---------- | ----------------------------- |
+| `ctrl + l` | Switch to window on the right |
+| `ctrl + h` | Switch to window on the left  |
+| `ctrl + k` | Switch to window above        |
+| `ctrl + j` | Switch to window below        |
 
 ## Running Code Tests
 
@@ -95,6 +95,6 @@ Visual Mode
 
 ## File tree
 
-| Keybind    | Action                       |
-| ---------- | ---------------------------- |
-| `ctrl + e` | Open file tree on the left  |
+| Keybind    | Action                     |
+| ---------- | -------------------------- |
+| `ctrl + e` | Open file tree on the left |
