@@ -14,11 +14,11 @@ return {
         }
         -- Set menu keys
         dashboard.section.buttons.val = {
-            dashboard.button("e", "N  > New file", ":ene <BAR> startinsert <CR>"),
-            dashboard.button("f", "F  > Find file", ":cd ./ | Telescope find_files<CR>"),
-            dashboard.button("S", "S  > Open file tree", "<cmd>Neotree filesystem reveal left<CR>"),
-            dashboard.button("r", "R  > Recent", ":Telescope oldfiles<CR>"),
-            dashboard.button("q", "Q  > Quit NVIM", ":qa<CR>"),
+            dashboard.button("e", "󰝒  > New file", ":ene <BAR> startinsert <CR>"),
+            dashboard.button("f", "󰈞  > Find file", ":cd ./ | Telescope find_files<CR>"),
+            dashboard.button("S", "󰙅  > Open file tree", "<cmd>Neotree filesystem reveal left<CR>"),
+            dashboard.button("r", "󱋡  > Recent", ":Telescope oldfiles<CR>"),
+            dashboard.button("q", "󰅙  > Quit NVIM", ":qa<CR>"),
         }
 
         alpha.setup(dashboard.opts)
