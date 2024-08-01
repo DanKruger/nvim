@@ -49,7 +49,6 @@ keybind.set("n", "<leader>q", "<C-w>q") -- Close window (same as :q)
 
 -- Window resizing
 keybind.set("n", "<A-Right>", ":vert res +5<CR>") -- horizontally by 5
-keybind.set("n", "<A-Left>", ":vert res -5<CR>")  -- horizontally by -5
 keybind.set("n", "<A-Up>", ":res +5<CR>")         -- vertically by 5
 keybind.set("n", "<A-Down>", ":res -5<CR>")       -- vertically by -5
 
