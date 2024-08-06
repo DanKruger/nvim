@@ -30,7 +30,7 @@ option.clipboard:append("unnamedplus")
 
 -- Line number configuration
 option.number = true
-option.relativenumber = true
+-- option.relativenumber = true
 option.signcolumn = "auto:9"
 --[[ option.statuscolumn = '%#NonText# %{&nu?v:lnum:""} %=' ]]
 
@@ -67,7 +67,7 @@ keybind.set("n", "<A-Up>", ":res +5<CR>") -- vertically by 5
 keybind.set("n", "<A-Down>", ":res -5<CR>") -- vertically by -5
 
 -- Clear search highlights
-keybind.set("n", "<leader>h", ":nohl<CR>", { desc = "Clear search highlights" })
+keybind.set("n", "<leader>hl", ":nohl<CR>", { desc = "Clear search highlights" })
 
 -- Highlight when yanking stuff
 vim.api.nvim_create_autocmd("TextYankPost", {

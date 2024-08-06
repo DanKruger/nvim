@@ -7,6 +7,12 @@ cd ~/.config/nvim && nvim
 
 # Keybinds
 
+## Searching
+
+| Keybind           | Action                 |
+| ----------------- | ---------------------- |
+| `space -> h -> l` | clear search highlight |
+
 ## Git
 
 | Keybind                | Action                                    |
