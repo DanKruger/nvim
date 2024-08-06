@@ -24,6 +24,7 @@ cd ~/.config/nvim && nvim
 | `space -> h -> D`      | I think this is supposed to close diff    |
 | `space -> h -> t -> b` | Toggle show blame inline for current line |
 | `space -> h -> t -> d` | Toggle show deleted code inline           |
+| `space -> h -> t -> l` | Toggle hightlight changed lines           |
 | `] -> c`               | Move to next hunk                         |
 | `[ -> c`               | Move to last hunk                         |
 
