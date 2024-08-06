@@ -32,7 +32,7 @@ return {
 			current_line_blame_opts = {
 				virt_text = true,
 				virt_text_pos = "eol", -- 'eol' | 'overlay' | 'right_align'
-				delay = 16,
+				delay = 500,
 				ignore_whitespace = false,
 				virt_text_priority = 100,
 			},
@@ -88,6 +88,7 @@ return {
 				map("n", "<leader>htb", gitsigns.toggle_current_line_blame)
 				map("n", "<leader>htd", gitsigns.toggle_deleted)
 				map("n", "<leader>htl", gitsigns.toggle_linehl)
+				map("n", "<leader>htw", gitsigns.toggle_word_diff)
 			end,
 		})
 	end,
