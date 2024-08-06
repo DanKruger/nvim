@@ -9,9 +9,17 @@ cd ~/.config/nvim && nvim
 
 ## Git
 
-| Keybind           | Action       |
-| ----------------- | ------------ |
-| `space -> l -> g` | Open LazyGit |
+| Keybind                | Action                                    |
+| ---------------------- | ----------------------------------------- |
+| `space -> l -> g`      | Open LazyGit                              |
+| `space -> h -> h`      | Preview hunk                              |
+| `space -> h -> b`      | Show file diffs                           |
+| `space -> h -> d`      | Show blame for current line               |
+| `space -> h -> D`      | I think this is supposed to close diff    |
+| `space -> h -> t -> b` | Toggle show blame inline for current line |
+| `space -> h -> t -> d` | Toggle show deleted code inline           |
+| `] -> c`               | Move to next hunk                         |
+| `[ -> c`               | Move to last hunk                         |
 
 ## Telescope
 
