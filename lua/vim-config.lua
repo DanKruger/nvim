@@ -16,7 +16,7 @@ option.expandtab = true -- Expand tab to spaces
 option.autoindent = true -- copy indent of current line to new line
 
 option.cursorline = true -- Highlight line cursor is on
-option.updatetime = 100 -- Set buffer update time
+option.updatetime = 1 -- Set buffer update time
 
 -- Search settings
 option.ignorecase = true -- Ignore case while searching
