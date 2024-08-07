@@ -81,13 +81,17 @@ cd ~/.config/nvim && nvim
 
 ## Code editing
 
-| Keybind           | Action                              |
-| ----------------- | ----------------------------------- |
-| `space -> g`      | Format the whole file               |
-| `space -> f -> i` | Reindent whole file                 |
-| `shift + i`       | Hover information on variable below |
-| `ctrl + n`        | Code actions                        |
-| `ctrl + e`        | Show completions                    |
+| Keybind           | Action                                |
+| ----------------- | ------------------------------------- |
+| `space -> g`      | Format the whole file                 |
+| `space -> f -> i` | Reindent whole file                   |
+| `shift + i`       | Hover information on variable below   |
+| `ctrl + n`        | Code actions                          |
+| `ctrl + space`    | Show completions                      |
+| `ctrl + n`        | Select first completion suggestion    |
+| `ctrl + b`        | Select previous completion suggestion |
+| `ctrl + k`        | jump to next parameter in snippet     |
+| `ctrl + j`        | jump to previous parameter in snippet |
 
 ## Commenting
 
