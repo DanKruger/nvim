@@ -10,8 +10,7 @@ return {
         config = function()
             require("mason-tool-installer").setup({
                 -- Install necessary formatters and linters
-                ensure_installed = { "shfmt", "prettier", "black", "checkstyle", "pylint" },
-            })
+                ensure_installed = { "shfmt", "prettier", "black", "checkstyle", "pylint" }, })
         end,
     },
     {
@@ -54,7 +53,6 @@ return {
             lsp_config.jdtls.setup({ capabilities = capabilities })
             lsp_config.markdown_oxide.setup({ capabilities = capabilities })
 
-            vim.keymap.set("n", "I", vim.lsp.buf.hover, {})           -- Shift + i
             vim.keymap.set({ "n", "v" }, "<C-n>", vim.lsp.buf.code_action, {}) -- Control + n
         end,
     },
