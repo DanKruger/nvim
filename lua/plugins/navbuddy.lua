@@ -4,8 +4,12 @@ return {
         "neovim/nvim-lspconfig",
         "SmiteshP/nvim-navic",
         "MunifTanjim/nui.nvim",
-        "numToStr/Comment.nvim",   -- Optional
+        "numToStr/Comment.nvim", -- Optional
         "nvim-telescope/telescope.nvim", -- Optional
+    },
+    opts = {
+        window = { size = "70%" },
+        lsp = { auto_attach = true },
     },
     cmd = { "Navbuddy" },
     keys = {

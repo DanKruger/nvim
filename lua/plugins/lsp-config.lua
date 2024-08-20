@@ -39,15 +39,8 @@ return {
         event = { "BufReadPre", "BufNewFile" },
         dependencies = {
             { "antosha417/nvim-lsp-file-operations", config = true },
-            { "folke/neodev.nvim",                   opts = {} },
-            {
-                "SmiteshP/nvim-navbuddy",
-                dependencies = {
-                    "SmiteshP/nvim-navic",
-                    "MunifTanjim/nui.nvim",
-                },
-                opts = { lsp = { auto_attach = true } },
-            },
+            { "folke/neodev.nvim", opts = {} },
+            { "SmiteshP/nvim-navbuddy" },
         },
         config = function()
             local capabilities = require("cmp_nvim_lsp").default_capabilities()
@@ -66,7 +59,7 @@ return {
             local _border = "single"
             vim.lsp.handlers["textDocument/hover"] = vim.lsp.with(vim.lsp.handlers.hover, { border = _border })
             vim.lsp.handlers["textDocument/signatureHelp"] =
-                vim.lsp.with(vim.lsp.handlers.signature_help, { border = _border })
+            vim.lsp.with(vim.lsp.handlers.signature_help, { border = _border })
             vim.diagnostic.config({ float = { border = _border } })
         end,
     },
