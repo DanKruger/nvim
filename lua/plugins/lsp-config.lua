@@ -10,7 +10,8 @@ return {
         config = function()
             require("mason-tool-installer").setup({
                 -- Install necessary formatters and linters
-                ensure_installed = { "shfmt", "prettier", "black", "checkstyle", "pylint" }, })
+                ensure_installed = { "shfmt", "prettier", "black", "checkstyle", "pylint" },
+            })
         end,
     },
     {
@@ -38,7 +39,7 @@ return {
         event = { "BufReadPre", "BufNewFile" },
         dependencies = {
             { "antosha417/nvim-lsp-file-operations", config = true },
-            { "folke/neodev.nvim",                   opts = {} },
+            { "folke/neodev.nvim", opts = {} },
         },
         config = function()
             local capabilities = require("cmp_nvim_lsp").default_capabilities()
@@ -54,6 +55,11 @@ return {
             lsp_config.markdown_oxide.setup({ capabilities = capabilities })
 
             vim.keymap.set({ "n", "v" }, "<C-n>", vim.lsp.buf.code_action, {}) -- Control + n
+            local _border = "single"
+            vim.lsp.handlers["textDocument/hover"] = vim.lsp.with(vim.lsp.handlers.hover, { border = _border })
+            vim.lsp.handlers["textDocument/signatureHelp"] =
+            vim.lsp.with(vim.lsp.handlers.signature_help, { border = _border })
+            vim.diagnostic.config({ float = { border = _border } })
         end,
     },
 }
