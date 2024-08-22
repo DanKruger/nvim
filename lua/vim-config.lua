@@ -19,14 +19,14 @@ option.list = true
 -- option.listchars = [[lead:⋅]]
 
 option.listchars:append({
-	tab = "┊─>",
+	tab = "┊╴",
 	multispace = "⋅",
 	lead = "⋅",
 	trail = "⋅",
 	nbsp = "⋅",
 })
 option.cursorline = true -- Highlight line cursor is on
-option.updatetime = 50 -- Set buffer update time
+option.updatetime = 100 -- Set buffer update time
 
 -- Search settings
 option.ignorecase = true -- Ignore case while searching
@@ -78,6 +78,9 @@ keybind.set("n", "<A-Down>", "<cmd>res -5<CR>") -- vertically by -5
 
 -- Clear search highlights
 keybind.set("n", "<leader>hl", "<cmd>nohl<CR>", { desc = "Clear search highlights" })
+
+-- Remap terminal exit mode
+keybind.set("t", "<Esc-t>", "<C-\\><C-n>", { noremap = true, silent = true })
 
 -- Highlight when yanking stuff
 vim.api.nvim_create_autocmd("TextYankPost", {
