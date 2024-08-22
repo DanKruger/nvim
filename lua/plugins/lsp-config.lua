@@ -21,13 +21,16 @@ return {
                 automatic_installation = true,
                 -- Install necessary LSP
                 ensure_installed = {
-                    "lua_ls",
-                    "lemminx",
-                    "bashls",
-                    "pylsp",
+                    "lua_ls", -- Lua LSP for config
+                    -- WebDev
                     "tsserver",
                     "cssls",
                     "html",
+                    "emmet_ls",
+
+                    "lemminx",
+                    "bashls",
+                    "pyright",
                     "markdown_oxide",
                     "jdtls",
                 },
@@ -39,27 +42,34 @@ return {
         event = { "BufReadPre", "BufNewFile" },
         dependencies = {
             { "antosha417/nvim-lsp-file-operations", config = true },
-            { "folke/neodev.nvim", opts = {} },
+            { "folke/neodev.nvim",                   opts = {} },
             { "SmiteshP/nvim-navbuddy" },
         },
         config = function()
             local capabilities = require("cmp_nvim_lsp").default_capabilities()
             local lsp_config = require("lspconfig")
-            lsp_config.pylsp.setup({ capabilities = capabilities })
+            lsp_config.lua_ls.setup({ capabilities = capabilities }) -- Start Lua LS first
+
             lsp_config.lemminx.setup({ capabilities = capabilities })
             lsp_config.bashls.setup({ capabilities = capabilities })
+            lsp_config.markdown_oxide.setup({ capabilities = capabilities })
+
+            -- Web Development
             lsp_config.tsserver.setup({ capabilities = capabilities })
             lsp_config.html.setup({ capabilities = capabilities })
             lsp_config.cssls.setup({ capabilities = capabilities })
-            lsp_config.lua_ls.setup({ capabilities = capabilities })
-            lsp_config.jdtls.setup({ capabilities = capabilities })
-            lsp_config.markdown_oxide.setup({ capabilities = capabilities })
+            lsp_config.emmet_ls.setup({ capabilities = capabilities })
+            --
+
+            lsp_config.jdtls.setup({ capabilities = capabilities })   -- Java
+
+            lsp_config.pyright.setup({ capabilities = capabilities }) -- Python
 
             vim.keymap.set({ "n", "v" }, "<C-n>", vim.lsp.buf.code_action, {}) -- Control + n
             local _border = "single"
             vim.lsp.handlers["textDocument/hover"] = vim.lsp.with(vim.lsp.handlers.hover, { border = _border })
             vim.lsp.handlers["textDocument/signatureHelp"] =
-            vim.lsp.with(vim.lsp.handlers.signature_help, { border = _border })
+                vim.lsp.with(vim.lsp.handlers.signature_help, { border = _border })
             vim.diagnostic.config({ float = { border = _border } })
         end,
     },
