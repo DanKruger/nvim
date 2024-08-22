@@ -4,11 +4,6 @@ return {
     priority = 1000,
     config = function()
         require("kanagawa").setup({
-            -- transparent = true,
-            -- styles = {
-            --     sidebars = "transparent",
-            --     floats = "transparent",
-            -- },
             theme = "wave",
             colors = {
                 theme = {
@@ -20,6 +15,11 @@ return {
                 },
             },
 
+            -- transparent = true,
+            -- styles = {
+            --     sidebars = "transparent",
+            --     floats = "transparent",
+            -- },
             --     overrides = function(colors)
             --         local theme = colors.theme
             --         return {
