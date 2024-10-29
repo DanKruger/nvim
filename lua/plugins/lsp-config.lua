@@ -23,7 +23,7 @@ return {
                 ensure_installed = {
                     "lua_ls", -- Lua LSP for config
                     -- WebDev
-                    "tsserver",
+                    "ts_ls",
                     "cssls",
                     "html",
                     "emmet_ls",
@@ -42,7 +42,7 @@ return {
         event = { "BufReadPre", "BufNewFile" },
         dependencies = {
             { "antosha417/nvim-lsp-file-operations", config = true },
-            { "folke/neodev.nvim",                   opts = {} },
+            { "folke/neodev.nvim", opts = {} },
             { "SmiteshP/nvim-navbuddy" },
         },
         config = function()
@@ -61,7 +61,8 @@ return {
             lsp_config.emmet_ls.setup({ capabilities = capabilities })
             --
 
-            lsp_config.jdtls.setup({ capabilities = capabilities })   -- Java
+            lsp_config.jdtls.setup({ capabilities = capabilities }) -- Java
+            lsp_config.dartls.setup({ capabilities = capabilities }) -- Java
 
             lsp_config.pyright.setup({ capabilities = capabilities }) -- Python
 
@@ -69,7 +70,7 @@ return {
             local _border = "single"
             vim.lsp.handlers["textDocument/hover"] = vim.lsp.with(vim.lsp.handlers.hover, { border = _border })
             vim.lsp.handlers["textDocument/signatureHelp"] =
-                vim.lsp.with(vim.lsp.handlers.signature_help, { border = _border })
+            vim.lsp.with(vim.lsp.handlers.signature_help, { border = _border })
             vim.diagnostic.config({ float = { border = _border } })
         end,
     },
