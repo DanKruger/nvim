@@ -42,7 +42,7 @@ return {
         event = { "BufReadPre", "BufNewFile" },
         dependencies = {
             { "antosha417/nvim-lsp-file-operations", config = true },
-            { "folke/neodev.nvim", opts = {} },
+            { "folke/neodev.nvim",                   opts = {} },
             { "SmiteshP/nvim-navbuddy" },
         },
         config = function()
@@ -61,16 +61,18 @@ return {
             lsp_config.emmet_ls.setup({ capabilities = capabilities })
             --
 
-            lsp_config.jdtls.setup({ capabilities = capabilities }) -- Java
-            lsp_config.dartls.setup({ capabilities = capabilities }) -- Java
+            lsp_config.jdtls.setup({ capabilities = capabilities })       -- Java
+            lsp_config.dartls.setup({ capabilities = capabilities })      -- Dart
 
-            lsp_config.pyright.setup({ capabilities = capabilities }) -- Python
+            lsp_config.pyright.setup({ capabilities = capabilities })     -- Python
 
             vim.keymap.set({ "n", "v" }, "<C-n>", vim.lsp.buf.code_action, {}) -- Control + n
+            vim.keymap.set({ "n", "v" }, "<C-d><C-r>", vim.lsp.buf.rename, {}) -- Control + d +  Control + r
+            vim.keymap.set({ "n", "v" }, "<C-d><C-d>", vim.lsp.buf.definition, {}) -- Control + d + Control + d
             local _border = "single"
             vim.lsp.handlers["textDocument/hover"] = vim.lsp.with(vim.lsp.handlers.hover, { border = _border })
             vim.lsp.handlers["textDocument/signatureHelp"] =
-            vim.lsp.with(vim.lsp.handlers.signature_help, { border = _border })
+                vim.lsp.with(vim.lsp.handlers.signature_help, { border = _border })
             vim.diagnostic.config({ float = { border = _border } })
         end,
     },

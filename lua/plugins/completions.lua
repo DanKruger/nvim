@@ -39,9 +39,9 @@ return {
                 }),
                 sources = cmp.config.sources({
                     { name = "nvim_lsp" },
-                    { name = "path" },
-                    { name = "buffer" },
                     { name = "luasnip" }, -- For luasnip users.
+                    { name = "buffer" },
+                    { name = "path" },
                 }, {
                     { name = "buffer" },
                 }),
@@ -50,7 +50,7 @@ return {
             local ls = require("luasnip")
             ls.config.set_config({
                 history = false,
-                updateevents = "TextChanged,TextChangedI",
+                updateevents = "TextChanged, TextChangedI",
             })
 
             vim.keymap.set({ "i", "s" }, "<c-k>", function()

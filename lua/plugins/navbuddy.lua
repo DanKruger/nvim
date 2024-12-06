@@ -13,6 +13,6 @@ return {
     },
     cmd = { "Navbuddy" },
     keys = {
-        { "<leader>nb", "<cmd>Navbuddy<CR>", desc = "Open navbuddy to brows symbols in your buffer" },
+        { "<leader>nb", "<cmd>Navbuddy<CR>", desc = "Open navbuddy to browse symbols in your buffer" },
     },
 }

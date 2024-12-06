@@ -18,13 +18,14 @@ option.autoindent = true -- copy indent of current line to new line
 option.list = true
 -- option.listchars = [[lead:⋅]]
 
-option.listchars:append({
-	tab = "┊╴",
-	multispace = "⋅",
-	lead = "⋅",
-	trail = "⋅",
-	nbsp = "⋅",
-})
+-- option.listchars:append({
+-- 	tab = "┊╴",
+-- 	multispace = "⋅",
+-- 	lead = "⋅",
+-- 	trail = "⋅",
+-- 	nbsp = "⋅",
+-- })
+--
 option.cursorline = true -- Highlight line cursor is on
 option.updatetime = 100 -- Set buffer update time
 
@@ -41,8 +42,10 @@ option.clipboard:append("unnamedplus")
 -- Line number configuration
 option.number = true
 option.relativenumber = true
-option.signcolumn = "auto:9"
+-- option.signcolumn = "auto:9"
 --[[ option.statuscolumn = '%#NonText# %{&nu?v:lnum:""} %=' ]]
+
+vim.highlight.priorities.semantic_tokens = 95
 
 vim.fn.sign_define("DiagnosticSignError", { text = " ", texthl = "DiagnosticSignError" })
 vim.fn.sign_define("DiagnosticSignWarn", { text = " ", texthl = "DiagnosticSignWarn" })
