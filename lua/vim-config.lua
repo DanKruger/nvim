@@ -14,7 +14,6 @@ option.scrolloff = 10
 option.softtabstop = 4
 option.expandtab = true -- Expand tab to spaces
 option.autoindent = true -- copy indent of current line to new line
-
 option.list = true
 -- option.listchars = [[lead:⋅]]
 
