@@ -33,7 +33,7 @@ option.expandtab = true -- Expand tab to spaces
 option.autoindent = true -- copy indent of current line to new line
 option.list = true
 
-vim.highlight.priorities.semantic_tokens = 95
+vim.hl.priorities.semantic_tokens = 95
 vim.fn.sign_define("DiagnosticSignError", { text = " ", texthl = "DiagnosticSignError" })
 vim.fn.sign_define("DiagnosticSignWarn", { text = " ", texthl = "DiagnosticSignWarn" })
 vim.fn.sign_define("DiagnosticSignInfo", { text = " ", texthl = "DiagnosticSignInfo" })
@@ -131,7 +131,7 @@ require("lazy").setup({
 	{
 		{
 			"nvim-telescope/telescope.nvim",
-			tag = "0.1.5",
+			branch = "0.1.x",
 			dependencies = {
 				"nvim-lua/plenary.nvim",
 				"nvim-telescope/telescope-ui-select.nvim",
@@ -418,17 +418,17 @@ require("lazy").setup({
 					lsp_format_opt = "fallback"
 				end
 				return {
-					timeout_ms = 500,
+					timeout_ms = 1000,
 					lsp_format = lsp_format_opt,
 				}
 			end,
 			formatters_by_ft = {
 				lua = { "stylua" },
-				astro = { "prettierd", "prettier" },
+				astro = { "prettier", "prettierd" },
 				dart = { "dart_format" },
-				javascript = { "prettierd", "prettier", stop_after_first = true },
-				typescript = { "prettierd", "prettier", stop_after_first = true },
-				markdown = { "prettierd", "prettier", stop_after_first = true },
+				javascript = { "prettier", "prettierd", stop_after_first = true },
+				typescript = { "prettier", "prettierd", stop_after_first = true },
+				markdown = { "prettier", "prettierd", stop_after_first = true },
 			},
 		},
 	},
