@@ -1,9 +1,9 @@
 vim.keymap.set("n", "<Esc>", "<cmd>nohlsearch<CR>") -- very good
 
-
 -- Diagnostic keymaps
 vim.keymap.set("n", "<leader>q", vim.diagnostic.setloclist, { desc = "Open diagnostic [Q]uickfix list" })
 vim.keymap.set("t", "<Esc><Esc>", "<C-\\><C-n>", { desc = "Exit terminal mode" })
+vim.keymap.set("i", "jj", "<Esc>", { desc = "Exit insert mode" })
 
 vim.keymap.set("n", "<left>", '<cmd>echo "Use h to move!!"<CR>')
 vim.keymap.set("n", "<right>", '<cmd>echo "Use l to move!!"<CR>')
@@ -37,3 +37,12 @@ vim.keymap.set("n", "<C-h>", "<C-w><C-h>", { desc = "Move focus to the left wind
 vim.keymap.set("n", "<C-l>", "<C-w><C-l>", { desc = "Move focus to the right window" })
 vim.keymap.set("n", "<C-j>", "<C-w><C-j>", { desc = "Move focus to the lower window" })
 vim.keymap.set("n", "<C-k>", "<C-w><C-k>", { desc = "Move focus to the upper window" })
+
+-- Folding
+vim.keymap.set("n", "<leader>ff", "za", { desc = "Toggle fold" })
+vim.keymap.set("n", "<leader>fo", "zo", { desc = "Open fold" })
+vim.keymap.set("n", "<leader>fc", "zc", { desc = "Close fold" })
+vim.keymap.set("n", "<leader>fR", "zR", { desc = "Open all folds" })
+vim.keymap.set("n", "<leader>fM", "zM", { desc = "Close all folds" })
+vim.keymap.set("n", "]f", "zj", { desc = "Next fold" })
+vim.keymap.set("n", "[f", "zk", { desc = "Previous fold" })

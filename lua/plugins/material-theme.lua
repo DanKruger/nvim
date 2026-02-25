@@ -1,13 +1,8 @@
 return {
 	"marko-cerovac/material.nvim",
-	lazy = false, -- optional: load immediately
-	priority = 1000, -- optional: ensures theme loads before other plugins
+	lazy = true,
 	config = function()
-		-- optional configuration
-		vim.g.material_style = "deep ocean" -- example style
-		require("material").setup({
-			-- your options here
-		})
-		-- vim.cmd.colorscheme("material")
+		vim.g.material_style = "deep ocean"
+		require("material").setup({})
 	end,
 }

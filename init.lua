@@ -9,13 +9,6 @@ vim.g.undofile = true -- Save undo history
 
 vim.hl.priorities.semantic_tokens = 95
 
-vim.api.nvim_create_autocmd("FileType", {
-	pattern = { "<filetype>" },
-	callback = function()
-		vim.treesitter.start()
-	end,
-})
-
 require("core.options")
 require("core.keymaps")
 require("config.lazy")

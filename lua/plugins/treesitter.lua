@@ -17,94 +17,69 @@ return {
 	config = function()
 		local ts = require("nvim-treesitter")
 
-		-- State tracking for async parser loading
+		-- State tracking
 		local parsers_loaded = {}
-		local parsers_pending = {}
 		local parsers_failed = {}
+		local parser_available = {}
+		local install_attempted = {}
+		local pending_by_buf = {}
+		local queue_scheduled = false
 
-		local ns = vim.api.nvim_create_namespace("treesitter.async")
+		local function has_parser(lang)
+			local cached = parser_available[lang]
+			if cached ~= nil then
+				return cached
+			end
+			local ok = pcall(vim.treesitter.language.inspect, lang)
+			parser_available[lang] = ok
+			return ok
+		end
 
 		-- Helper to start highlighting and indentation
 		local function start(buf, lang)
+			if not vim.api.nvim_buf_is_valid(buf) then
+				return false
+			end
 			local ok = pcall(vim.treesitter.start, buf, lang)
 			if ok then
+				parsers_loaded[lang] = true
 				vim.bo[buf].indentexpr = "v:lua.require'nvim-treesitter'.indentexpr()"
 			end
 			return ok
 		end
 
-		-- Install core parsers after lazy.nvim finishes loading all plugins
-		vim.api.nvim_create_autocmd("User", {
-			pattern = "LazyDone",
-			once = true,
-			callback = function()
-				ts.install({
-					"bash",
-					"comment",
-					"css",
-					"diff",
-					"fish",
-					"git_config",
-					"git_rebase",
-					"gitcommit",
-					"gitignore",
-					"html",
-					"javascript",
-					"json",
-					"latex",
-					"lua",
-					"luadoc",
-					"make",
-					"markdown",
-					"markdown_inline",
-					"norg",
-					"python",
-					"query",
-					"regex",
-					"scss",
-					"svelte",
-					"toml",
-					"tsx",
-					"typescript",
-					"typst",
-					"vim",
-					"vimdoc",
-					"vue",
-					"xml",
-				}, {
-					max_jobs = 8,
-				})
-			end,
-		})
+		local function drain_pending()
+			queue_scheduled = false
+			local pending = pending_by_buf
+			pending_by_buf = {}
 
-		-- Decoration provider for async parser loading
-		vim.api.nvim_set_decoration_provider(ns, {
-			on_start = vim.schedule_wrap(function()
-				if #parsers_pending == 0 then
-					return false
-				end
-				for _, data in ipairs(parsers_pending) do
-					if vim.api.nvim_buf_is_valid(data.buf) then
-						if start(data.buf, data.lang) then
-							parsers_loaded[data.lang] = true
-						else
-							parsers_failed[data.lang] = true
-						end
+			for buf, lang in pairs(pending) do
+				if has_parser(lang) then
+					if not start(buf, lang) then
+						parsers_failed[lang] = true
 					end
 				end
-				parsers_pending = {}
-			end),
-		})
+			end
+		end
+
+		local function queue_start(buf, lang)
+			pending_by_buf[buf] = lang
+			if queue_scheduled then
+				return
+			end
+			queue_scheduled = true
+			vim.schedule(drain_pending)
+		end
 
 		local group = vim.api.nvim_create_augroup("TreesitterSetup", { clear = true })
 
 		local ignore_filetypes = {
-			"checkhealth",
-			"lazy",
-			"mason",
-			"snacks_dashboard",
-			"snacks_notif",
-			"snacks_win",
+			checkhealth = true,
+			lazy = true,
+			mason = true,
+			snacks_dashboard = true,
+			snacks_notif = true,
+			snacks_win = true,
 		}
 
 		-- Auto-install parsers and enable highlighting on FileType
@@ -112,7 +87,7 @@ return {
 			group = group,
 			desc = "Enable treesitter highlighting and indentation (non-blocking)",
 			callback = function(event)
-				if vim.tbl_contains(ignore_filetypes, event.match) then
+				if ignore_filetypes[event.match] then
 					return
 				end
 
@@ -123,16 +98,27 @@ return {
 					return
 				end
 
-				if parsers_loaded[lang] then
-					-- Parser already loaded, start immediately (fast path)
-					start(buf, lang)
-				else
-					-- Queue for async loading
-					table.insert(parsers_pending, { buf = buf, lang = lang })
+				if has_parser(lang) then
+					if parsers_loaded[lang] then
+						start(buf, lang)
+					else
+						queue_start(buf, lang)
+					end
+					return
 				end
 
-				-- Auto-install missing parsers (async, no-op if already installed)
-				ts.install({ lang })
+				if install_attempted[lang] then
+					return
+				end
+
+				install_attempted[lang] = true
+				local ok = pcall(ts.install, { lang })
+				if not ok then
+					parsers_failed[lang] = true
+				else
+					-- Re-check parser availability on the next FileType event.
+					parser_available[lang] = nil
+				end
 			end,
 		})
 	end,
