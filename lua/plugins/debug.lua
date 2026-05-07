@@ -77,8 +77,43 @@ return {
       ensure_installed = {
         -- Update this to ensure that you have the debuggers for the langs you want
         'delve',
+        'codelldb',
       },
     }
+
+    local codelldb_root = vim.fn.stdpath 'data' .. '/mason/packages/codelldb/extension/'
+    local codelldb_path = codelldb_root .. 'adapter/codelldb'
+    local liblldb_path = codelldb_root .. 'lldb/lib/liblldb.so'
+
+    if vim.fn.has 'mac' == 1 then
+      liblldb_path = codelldb_root .. 'lldb/lib/liblldb.dylib'
+    elseif vim.fn.has 'win32' == 1 then
+      codelldb_path = codelldb_root .. 'adapter/codelldb.exe'
+      liblldb_path = codelldb_root .. 'lldb/bin/liblldb.dll'
+    end
+
+    dap.adapters.codelldb = {
+      type = 'server',
+      port = '${port}',
+      executable = {
+        command = codelldb_path,
+        args = { '--liblldb', liblldb_path, '--port', '${port}' },
+      },
+    }
+
+    dap.configurations.cpp = {
+      {
+        name = 'Launch file (codelldb)',
+        type = 'codelldb',
+        request = 'launch',
+        program = function()
+          return vim.fn.input('Path to executable: ', vim.fn.getcwd() .. '/', 'file')
+        end,
+        cwd = '${workspaceFolder}',
+        stopOnEntry = false,
+      },
+    }
+    dap.configurations.c = dap.configurations.cpp
 
     -- Dap UI setup
     -- For more information, see |:help nvim-dap-ui|

@@ -19,8 +19,10 @@ return {
 			defaults = {
 				layout_strategy = "vertical",
 				layout_config = {
+					width = 0.95,
 					vertical = { width = 0.7 },
 				},
+				sorting_strategy = "descending",
 			},
 			extensions = {
 				fzf = {},
