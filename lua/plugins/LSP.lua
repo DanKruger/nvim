@@ -139,6 +139,7 @@ return {
 						},
 					},
 				},
+				prismals = {},
 			}
 
 			-- Ensure the servers and tools above are installed
@@ -187,6 +188,7 @@ return {
 					"pyright",
 					"clangd",
 					"gopls",
+					"prismals",
 					"markdown_oxide",
 					"jdtls",
 				},

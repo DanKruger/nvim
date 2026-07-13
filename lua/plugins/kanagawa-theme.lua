@@ -14,6 +14,24 @@ return {
 					},
 				},
 			},
+			overrides = function()
+				return {
+					NoiceCmdlinePopup = { bg = "none" },
+					NoiceCmdlinePopupBorder = { bg = "none" },
+					NoiceCmdlinePopupBorderCalculator = { bg = "none" },
+					NoiceCmdlinePopupBorderCmdline = { bg = "none" },
+					NoiceCmdlinePopupBorderFilter = { bg = "none" },
+					NoiceCmdlinePopupBorderHelp = { bg = "none" },
+					NoiceCmdlinePopupBorderIncRename = { bg = "none" },
+					NoiceCmdlinePopupBorderInput = { bg = "none" },
+					NoiceCmdlinePopupBorderLua = { bg = "none" },
+					NoiceCmdlinePopupBorderSearch = { bg = "none" },
+					NoicePopup = { bg = "none" },
+					NoicePopupBorder = { bg = "none" },
+					NoicePopupmenu = { bg = "none" },
+					NoicePopupmenuBorder = { bg = "none" },
+				}
+			end,
 		})
 		vim.cmd.colorscheme("kanagawa-wave")
 	end,
