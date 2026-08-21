@@ -11,4 +11,5 @@ vim.hl.priorities.semantic_tokens = 95
 
 require("core.options")
 require("core.keymaps")
+vim.cmd.colorscheme("deep-ocean")
 require("config.lazy")

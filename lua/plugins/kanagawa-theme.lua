@@ -1,7 +1,7 @@
 return {
 	"rebelot/kanagawa.nvim",
 	name = "kanagawa",
-	priority = 1000,
+	lazy = true,
 	config = function()
 		require("kanagawa").setup({
 			theme = "wave",
@@ -33,6 +33,5 @@ return {
 				}
 			end,
 		})
-		vim.cmd.colorscheme("kanagawa-wave")
 	end,
 }

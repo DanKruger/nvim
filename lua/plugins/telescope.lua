@@ -17,6 +17,8 @@ return {
 				-- live_grep = { theme = 'ivy' }
 			},
 			defaults = {
+				border = true,
+				borderchars = { "─", "│", "─", "│", "╭", "╮", "╯", "╰" },
 				layout_strategy = "vertical",
 				layout_config = {
 					width = 0.95,

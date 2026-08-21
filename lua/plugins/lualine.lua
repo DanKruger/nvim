@@ -8,6 +8,41 @@ return {
 		vim.o.laststatus = 3
 	end,
 	config = function()
+		local colors = {
+			bg = "#0f111a",
+			bg_active = "#292d3e",
+			fg = "#8f93a2",
+			bright = "#ffffff",
+			blue = "#82aaff",
+			cyan = "#89ddff",
+			green = "#c3e88d",
+			purple = "#c792ea",
+			red = "#ff5370",
+			yellow = "#ffcb6b",
+		}
+
+		local function mode_section(color)
+			return {
+				a = { fg = colors.bg, bg = color, gui = "bold" },
+				b = { fg = color, bg = "NONE" },
+				c = { fg = colors.fg, bg = "NONE" },
+			}
+		end
+
+		local deep_ocean = {
+			normal = mode_section(colors.blue),
+			insert = mode_section(colors.green),
+			visual = mode_section(colors.purple),
+			replace = mode_section(colors.red),
+			command = mode_section(colors.yellow),
+			terminal = mode_section(colors.cyan),
+			inactive = {
+				a = { fg = colors.fg, bg = "NONE" },
+				b = { fg = colors.fg, bg = "NONE" },
+				c = { fg = colors.fg, bg = "NONE" },
+			},
+		}
+
 		local function noice_mode()
 			local noice = package.loaded["noice"]
 			if noice and noice.api and noice.api.status and noice.api.status.mode.has() then
@@ -23,7 +58,7 @@ return {
 
 		require("lualine").setup({
 			options = {
-				theme = "auto",
+				theme = deep_ocean,
 				globalstatus = true,
 				component_separators = { left = "│", right = "│" },
 				section_separators = { left = "", right = "" },
@@ -46,7 +81,13 @@ return {
 				},
 			},
 			sections = {
-				lualine_a = { "mode" },
+				lualine_a = {
+					{
+						"mode",
+						separator = { left = "", right = "" },
+						padding = { left = 1, right = 1 },
+					},
+				},
 				lualine_b = { "branch", "diff" },
 				lualine_c = {
 					{
@@ -68,14 +109,20 @@ return {
 					{
 						noice_mode,
 						cond = noice_mode_cond,
-						color = { fg = "#ff9e64" },
+						color = { fg = colors.yellow },
 					},
 					"encoding",
 					"fileformat",
 					"filetype",
 				},
 				lualine_y = { "progress" },
-				lualine_z = { "location" },
+				lualine_z = {
+					{
+						"location",
+						separator = { left = "", right = "" },
+						padding = { left = 1, right = 1 },
+					},
+				},
 			},
 			inactive_sections = {
 				lualine_a = {},
