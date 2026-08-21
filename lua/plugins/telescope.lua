@@ -11,6 +11,37 @@ return {
 		},
 	},
 	config = function()
+		local normal_to_insert = {}
+		local keep_in_normal = {
+			j = true,
+			k = true,
+			H = true,
+			M = true,
+			L = true,
+			G = true,
+			["?"] = true,
+		}
+
+		local function enter_insert(key)
+			return function()
+				vim.cmd.startinsert()
+				if key ~= "i" then
+					vim.schedule(function()
+						vim.api.nvim_feedkeys(key, "i", false)
+					end)
+				end
+			end
+		end
+
+		-- Start pickers in normal mode, but make ordinary typing feel natural.
+		-- Navigation and Telescope's built-in normal-mode keys remain untouched.
+		for code = 32, 126 do
+			local key = string.char(code)
+			if not keep_in_normal[key] then
+				normal_to_insert[key] = enter_insert(key)
+			end
+		end
+
 		require("telescope").setup({
 			pickers = {
 				-- find_files = { theme = 'ivy' },
@@ -20,6 +51,7 @@ return {
 				border = true,
 				borderchars = { "─", "│", "─", "│", "╭", "╮", "╯", "╰" },
 				initial_mode = "normal",
+				mappings = { n = normal_to_insert },
 				layout_strategy = "vertical",
 				layout_config = {
 					width = 0.95,
