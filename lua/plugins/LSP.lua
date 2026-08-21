@@ -22,6 +22,55 @@ return {
 			{ "SmiteshP/nvim-navic" },
 		},
 		config = function()
+			local function open_lsp_actions()
+				local builtin = require("telescope.builtin")
+				local pickers = require("telescope.pickers")
+				local finders = require("telescope.finders")
+				local conf = require("telescope.config").values
+				local telescope_actions = require("telescope.actions")
+				local action_state = require("telescope.actions.state")
+
+				local items = {
+					{ label = "Go to definition", run = builtin.lsp_definitions },
+					{ label = "Go to declaration", run = vim.lsp.buf.declaration },
+					{ label = "Go to references", run = builtin.lsp_references },
+					{ label = "Go to implementation", run = builtin.lsp_implementations },
+					{ label = "Go to type definition", run = builtin.lsp_type_definitions },
+					{ label = "Document symbols", run = builtin.lsp_document_symbols },
+					{ label = "Workspace symbols", run = builtin.lsp_dynamic_workspace_symbols },
+					{ label = "Rename symbol", run = vim.lsp.buf.rename },
+					{ label = "Code action", run = vim.lsp.buf.code_action },
+					{ label = "Hover documentation", run = vim.lsp.buf.hover },
+				}
+
+				pickers
+					.new({}, {
+						prompt_title = "LSP Actions",
+						finder = finders.new_table({
+							results = items,
+							entry_maker = function(item)
+								return { value = item, display = item.label, ordinal = item.label }
+							end,
+						}),
+						sorter = conf.generic_sorter({}),
+						attach_mappings = function(prompt_bufnr, map)
+							local function run_selected()
+								local selection = action_state.get_selected_entry()
+								telescope_actions.close(prompt_bufnr)
+								if selection and selection.value and selection.value.run then
+									selection.value.run()
+								end
+							end
+
+							telescope_actions.select_default:replace(run_selected)
+							map("i", "<CR>", run_selected)
+							map("n", "<CR>", run_selected)
+							return true
+						end,
+					})
+					:find()
+			end
+
 			vim.api.nvim_create_autocmd("LspAttach", {
 				group = vim.api.nvim_create_augroup("kickstart-lsp-attach", { clear = true }),
 				callback = function(event)
@@ -45,10 +94,11 @@ return {
 					map("<C-d><C-d>", vim.lsp.buf.definition, "Definition", { "n", "v" })
 					map("<C-n>", vim.lsp.buf.code_action, "[C]ode [A]ction", { "n", "v" })
 					map("gD", vim.lsp.buf.declaration, "[G]oto [D]eclaration")
+					map("<leader>la", open_lsp_actions, "LSP [A]ctions")
 
 					local client = vim.lsp.get_client_by_id(event.data.client_id)
 
-					if client and client.supports_method(vim.lsp.protocol.Methods.textDocument_documentHighlight) then
+					if client and client:supports_method(vim.lsp.protocol.Methods.textDocument_documentHighlight) then
 						local highlight_augroup = vim.api.nvim_create_augroup(
 							"kickstart-lsp-highlight-" .. event.buf,
 							{ clear = true }
@@ -96,6 +146,7 @@ return {
 			--  - settings (table): Override the default settings passed when initializing the server.
 			--        For example, to see the options for `lua_ls`, you could go to: https://luals.github.io/wiki/settings/
 
+			local mason_bin = vim.fn.stdpath("data") .. "/mason/bin"
 			local vue_language_server_path = vim.fn.stdpath("data")
 				.. "/mason/packages/vue-language-server/node_modules/@vue/language-server"
 
@@ -120,7 +171,20 @@ return {
 					},
 				},
 				vtsls = {
+					cmd = { mason_bin .. "/vtsls", "--stdio" },
 					filetypes = { "javascript", "javascriptreact", "typescript", "typescriptreact", "vue" },
+					root_dir = function(bufnr, on_dir)
+						on_dir(vim.fs.root(bufnr, {
+							"package.json",
+							"tsconfig.json",
+							"jsconfig.json",
+							"vite.config.js",
+							"vite.config.ts",
+							"vue.config.js",
+							"vue.config.ts",
+							".git",
+						}) or vim.fn.getcwd())
+					end,
 					settings = {
 						vtsls = {
 							tsserver = {
@@ -136,7 +200,17 @@ return {
 						},
 					},
 				},
-				vue_ls = {},
+				vue_ls = {
+					cmd = { mason_bin .. "/vue-language-server", "--stdio" },
+					root_markers = {
+						"package.json",
+						"vite.config.js",
+						"vite.config.ts",
+						"vue.config.js",
+						"vue.config.ts",
+						".git",
+					},
+				},
 				yamlls = {
 					settings = {
 						yaml = {
