@@ -49,8 +49,10 @@ return {
 					local client = vim.lsp.get_client_by_id(event.data.client_id)
 
 					if client and client.supports_method(vim.lsp.protocol.Methods.textDocument_documentHighlight) then
-						local highlight_augroup =
-							vim.api.nvim_create_augroup("kickstart-lsp-highlight", { clear = false })
+						local highlight_augroup = vim.api.nvim_create_augroup(
+							"kickstart-lsp-highlight-" .. event.buf,
+							{ clear = true }
+						)
 						vim.api.nvim_create_autocmd({ "CursorHold", "CursorHoldI" }, {
 							buffer = event.buf,
 							group = highlight_augroup,
@@ -135,6 +137,23 @@ return {
 					},
 				},
 				vue_ls = {},
+				yamlls = {
+					settings = {
+						yaml = {
+							format = { enable = true },
+							validate = true,
+							completion = true,
+						},
+					},
+				},
+				jsonls = {
+					settings = {
+						json = {
+							validate = { enable = true },
+							format = { enable = true },
+						},
+					},
+				},
 				-- pyright = {},
 				-- rust_analyzer = {},
 				-- ... etc. See `:help lspconfig-all` for a list of all the pre-configured LSPs
@@ -176,8 +195,9 @@ return {
 			--
 			-- You can add other tools here that you want Mason to install
 			-- for you, so that they are available from within Neovim.
-			local ensure_installed = vim.tbl_keys(servers or {})
-			vim.list_extend(ensure_installed, {
+			-- LSP servers are installed by mason-lspconfig below. Keep this list
+			-- limited to CLI tools so the two Mason installers do not duplicate work.
+			local tools = {
 				"stylua", -- Used to format Lua code
 				"shfmt",
 				"prettier",
@@ -190,8 +210,12 @@ return {
 				"black",
 				"checkstyle",
 				"pylint",
+			}
+			require("mason-tool-installer").setup({
+				ensure_installed = tools,
+				start_delay = 1000,
+				debounce_hours = 24,
 			})
-			require("mason-tool-installer").setup({ ensure_installed = ensure_installed })
 
 			for server_name, server in pairs(servers) do
 				server.capabilities = vim.tbl_deep_extend("force", {}, capabilities, server.capabilities or {})
@@ -199,11 +223,14 @@ return {
 			end
 
 			require("mason-lspconfig").setup({
+				automatic_enable = true,
 				ensure_installed = {
 					"lua_ls", -- Lua LSP for config
 					-- WebDev
 					"vtsls",
 					"vue_ls",
+					"yamlls",
+					"jsonls",
 					"cssls",
 					"html",
 					"emmet_ls",

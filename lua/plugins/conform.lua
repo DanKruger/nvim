@@ -16,6 +16,10 @@ return { -- Autoformat
 		notify_on_error = true,
 		notify_no_formatters = true,
 		format_on_save = function(bufnr)
+			if vim.b[bufnr].skip_format_on_save then
+				vim.b[bufnr].skip_format_on_save = nil
+				return
+			end
 			local ft = vim.bo[bufnr].filetype
 			local lsp_format_opt = (ft == "c" or ft == "cpp") and "never" or "fallback"
 			return {

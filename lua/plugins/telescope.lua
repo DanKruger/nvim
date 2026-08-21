@@ -19,6 +19,7 @@ return {
 			defaults = {
 				border = true,
 				borderchars = { "─", "│", "─", "│", "╭", "╮", "╯", "╰" },
+				initial_mode = "normal",
 				layout_strategy = "vertical",
 				layout_config = {
 					width = 0.95,

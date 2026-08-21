@@ -46,7 +46,7 @@ local groups = {
 	FoldColumn = { fg = c.fg_dim, bg = transparent },
 	Folded = { fg = c.fg_dim, bg = c.bg_alt, italic = true },
 	ColorColumn = { bg = c.bg_alt },
-	Visual = { bg = c.bg_visual },
+	Visual = { fg = c.fg_bright, bg = "#1e3a5f" },
 	Search = { fg = c.bg, bg = c.yellow },
 	IncSearch = { fg = c.bg, bg = c.cursor, bold = true },
 	Substitute = { fg = c.bg, bg = c.red },

@@ -14,6 +14,7 @@ return {
 			fg = "#8f93a2",
 			bright = "#ffffff",
 			blue = "#82aaff",
+			blue_visual = "#5c8fd6",
 			cyan = "#89ddff",
 			green = "#c3e88d",
 			purple = "#c792ea",
@@ -32,7 +33,7 @@ return {
 		local deep_ocean = {
 			normal = mode_section(colors.blue),
 			insert = mode_section(colors.green),
-			visual = mode_section(colors.purple),
+			visual = mode_section(colors.blue_visual),
 			replace = mode_section(colors.red),
 			command = mode_section(colors.yellow),
 			terminal = mode_section(colors.cyan),
