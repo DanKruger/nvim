@@ -8,7 +8,16 @@ return {
 		"nvim-telescope/telescope.nvim", -- Optional
 	},
 	opts = {
-		window = { size = "70%" },
+		window = {
+			border = "rounded",
+			size = { height = "100%", width = "100%" },
+			position = { row = "0%", col = "0%" },
+			sections = {
+				left = { size = "20%" },
+				mid = { size = "40%" },
+				right = { size = "40%" },
+			},
+		},
 		lsp = { auto_attach = true },
 	},
 	cmd = "Navbuddy",

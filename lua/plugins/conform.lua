@@ -34,6 +34,18 @@ return { -- Autoformat
 			lua = { "stylua" },
 			dart = { "dart_format" },
 			astro = { "prettierd", "prettier", stop_after_first = true },
+			-- EJS is formatted as HTML by prettier-plugin-ejs.
+			ejs = {
+				{
+					"prettierd",
+					prepend_args = { "--parser", "html", "--plugin", "prettier-plugin-ejs" },
+				},
+				{
+					"prettier",
+					prepend_args = { "--parser", "html", "--plugin", "prettier-plugin-ejs" },
+				},
+				stop_after_first = true,
+			},
 			vue = { "prettierd", "prettier", stop_after_first = true },
 			javascript = { "prettierd", "prettier", stop_after_first = true },
 			javascriptreact = { "prettierd", "prettier", stop_after_first = true },
