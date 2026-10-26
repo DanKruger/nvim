@@ -115,11 +115,11 @@ local groups = {
 	LspReferenceRead = { bg = c.bg_visual },
 	LspReferenceWrite = { bg = c.bg_active, underline = true },
 	LspInlayHint = { fg = c.fg_dim, bg = c.bg_alt, italic = true },
-	DiagnosticError = { fg = c.red },
-	DiagnosticWarn = { fg = c.yellow },
-	DiagnosticInfo = { fg = c.blue },
-	DiagnosticHint = { fg = c.cyan },
-	DiagnosticOk = { fg = c.green },
+	DiagnosticError = { fg = c.red, bg = "#2b1d27" },
+	DiagnosticWarn = { fg = c.yellow, bg = "#2d281c" },
+	DiagnosticInfo = { fg = c.blue, bg = "#1b2538" },
+	DiagnosticHint = { fg = c.cyan, bg = "#1c2a30" },
+	DiagnosticOk = { fg = c.green, bg = "#1b2b28" },
 	DiagnosticUnderlineError = { sp = c.red, undercurl = true },
 	DiagnosticUnderlineWarn = { sp = c.yellow, undercurl = true },
 	DiagnosticUnderlineInfo = { sp = c.blue, undercurl = true },
@@ -250,6 +250,54 @@ local links = {
 }
 for group, target in pairs(links) do
 	hi(group, { link = target })
+end
+
+-- More expressive Treesitter captures. These keep the Material Ocean palette
+-- intact while making common syntax roles easier to distinguish at a glance.
+local syntax_overrides = {
+	["@function.method"] = { fg = c.cyan },
+	["@function.method.call"] = { fg = c.cyan },
+	["@function.builtin"] = { fg = c.yellow, bold = true },
+	["@variable.parameter"] = { fg = c.purple },
+	["@variable.parameter.builtin"] = { fg = c.purple, italic = true },
+	["@property"] = { fg = c.cyan },
+	["@field"] = { fg = c.cyan },
+	["@constant.builtin"] = { fg = c.orange, bold = true },
+	["@keyword.return"] = { fg = c.red, italic = true },
+	["@keyword.conditional"] = { fg = c.purple, italic = true },
+	["@keyword.import"] = { fg = c.purple },
+	["@operator"] = { fg = c.cyan, bold = true },
+	["@punctuation.bracket"] = { fg = c.blue },
+	["@punctuation.delimiter"] = { fg = c.fg },
+	["@string.escape"] = { fg = c.orange, bold = true },
+	["@string.special.symbol"] = { fg = c.orange },
+	["@tag"] = { fg = c.red, bold = true },
+	["@tag.attribute"] = { fg = c.yellow },
+	["@tag.delimiter"] = { fg = c.cyan },
+	["@attribute"] = { fg = c.yellow },
+	["@markup.heading.1"] = { fg = c.blue, bold = true },
+	["@markup.heading.2"] = { fg = c.cyan, bold = true },
+	["@markup.heading.3"] = { fg = c.purple, bold = true },
+	["@markup.raw"] = { fg = c.green },
+	-- LSP semantic tokens add context beyond syntax alone.
+	["@lsp.type.class"] = { fg = c.yellow, bold = true },
+	["@lsp.type.interface"] = { fg = c.yellow, italic = true },
+	["@lsp.type.enum"] = { fg = c.purple, bold = true },
+	["@lsp.type.enumMember"] = { fg = c.orange },
+	["@lsp.type.namespace"] = { fg = c.purple },
+	["@lsp.type.type"] = { fg = c.yellow },
+	["@lsp.type.typeParameter"] = { fg = c.yellow, italic = true },
+	["@lsp.type.function"] = { fg = c.blue },
+	["@lsp.type.method"] = { fg = c.cyan },
+	["@lsp.type.parameter"] = { fg = c.purple },
+	["@lsp.type.property"] = { fg = c.cyan },
+	["@lsp.type.variable"] = { fg = c.fg_bright },
+	["@lsp.type.decorator"] = { fg = c.purple, italic = true },
+	["@lsp.mod.readonly"] = { fg = c.orange, italic = true },
+}
+
+for group, opts in pairs(syntax_overrides) do
+	hi(group, opts)
 end
 
 local terminal = { c.fg_dim, c.red, c.green, c.yellow, c.blue, c.purple, c.cyan, c.fg_bright }
