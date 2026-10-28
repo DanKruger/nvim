@@ -67,9 +67,12 @@ Restart Neovim after the first plugin installation.
 | Search open buffers              | `<Space>fb` |
 | Search recent files              | `<Space>fr` |
 | Search the word under the cursor | `<Space>fs` |
+| Flash jump | `s` |
+| Flash move from Visual mode | `f` / `F` |
 | Open file explorer               | `<C-e>`     |
 | Open LazyGit                     | `<Space>lg` |
 | Format the current buffer        | `<Space>g`  |
+| Save normally                    | `:w` or `:W` |
 | Save without formatting          | `:wnf`      |
 | Open Navbuddy                    | `<Space>nb` |
 | Toggle Zen Mode                  | `<C-c>`     |

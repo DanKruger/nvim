@@ -23,6 +23,11 @@ vim.api.nvim_create_user_command("Wnf", function()
 	end
 end, { desc = "Write the buffer without formatting" })
 
+-- A forgiving uppercase alias for :write, including :W! and filenames.
+vim.api.nvim_create_user_command("W", function(opts)
+	vim.cmd.write({ args = opts.args, bang = opts.bang })
+end, { bang = true, nargs = "*", desc = "Write the buffer" })
+
 -- User commands must start with an uppercase letter; make :wnf resolve to :Wnf.
 vim.cmd([[cnoreabbrev <expr> wnf getcmdtype() ==# ':' && getcmdline() ==# 'wnf' ? 'Wnf' : 'wnf']])
 require("config.lazy")
