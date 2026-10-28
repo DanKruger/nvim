@@ -258,6 +258,7 @@ local syntax_overrides = {
 	["@function.method"] = { fg = c.cyan },
 	["@function.method.call"] = { fg = c.cyan },
 	["@function.builtin"] = { fg = c.yellow, bold = true },
+	["@variable.builtin"] = { fg = c.red, italic = true },
 	["@variable.parameter"] = { fg = c.purple },
 	["@variable.parameter.builtin"] = { fg = c.purple, italic = true },
 	["@property"] = { fg = c.cyan },
