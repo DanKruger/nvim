@@ -16,6 +16,9 @@ vim.keymap.set("n", "]d", vim.diagnostic.goto_next, { desc = "Go to next [D]iagn
 vim.keymap.set("n", "<leader>oe", vim.diagnostic.open_float, { desc = "Show diagnostic Error messages" })
 vim.keymap.set("n", "<leader>oq", vim.diagnostic.setloclist, { desc = "Open diagnostic quickfix list" })
 
+-- Oil
+vim.keymap.set("n", "<leader>oil", "<cmd>Oil<CR>") -- horizontally by 5
+
 -- Tab navigation
 vim.keymap.set("n", "<A-j>", "<cmd>tabp<CR>") -- Switch to tab on left
 vim.keymap.set("n", "<A-k>", "<cmd>tabn<CR>") -- Switch to tab on right
