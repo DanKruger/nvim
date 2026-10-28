@@ -193,6 +193,31 @@ Completion is powered by nvim-cmp and LuaSnip. Autopairs integrate with completi
 
 The arrow keys in Normal mode intentionally display a reminder to use Vim's `h`, `j`, `k`, and `l` navigation keys.
 
+### Neo-tree
+
+Neo-tree opens on the left with Git status, diagnostics, modified-file markers, current-file tracking, rounded borders, and source tabs for the filesystem, buffers, and Git status.
+
+Inside the tree:
+
+| Action | Shortcut |
+| --- | --- |
+| Open file | `<CR>` |
+| Open vertical split | `s` |
+| Open horizontal split | `S` |
+| Open in a new tab | `t` |
+| Toggle floating preview | `P` |
+| Focus preview | `l` |
+| Refresh | `R` |
+| Toggle hidden/filtered files | `H` |
+| Set current directory as root | `.` |
+| Fuzzy-find files | `/` |
+| Previous/next Git-modified file | `[g` / `]g` |
+| Go to parent directory | `<Backspace>` |
+| Close Neo-tree | `q` |
+| Show Neo-tree help | `?` |
+
+The tree hides noisy directories such as `node_modules`, `dist`, `build`, `coverage`, and `vendor`, while keeping `.env` and common Git configuration files visible.
+
 ## Debugging
 
 Mason installs the configured debug adapters for Go, C, and C++.
