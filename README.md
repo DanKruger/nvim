@@ -114,6 +114,26 @@ Useful LSP shortcuts:
 
 Diagnostics can be navigated with `[d` and `]d`. Use `<Space>oe` to open the diagnostic under the cursor and `<Space>oq` to open the diagnostic list. `<Space>q` closes the current window.
 
+## Iris and DTL files
+
+This config also loads the local Iris language plugin from:
+
+```text
+/Users/daniel/code/toris/iris-nvim
+```
+
+Files ending in `.pipeline` use the Iris pipeline parser. Files ending in `.transform` use the DTL parser. Both get Tree-sitter highlighting, indentation, and folds. The Iris language server also provides parser diagnostics, document symbols, component/helper completion, and hover documentation from the Iris checkout.
+
+The server looks for `Iris/` in the workspace. If the project is elsewhere, set:
+
+```sh
+export IRIS_ROOT=/Users/daniel/code/toris/jc/Iris
+```
+
+The local plugin builds its parsers with the Tree-sitter CLI. Run `:IrisInstall` if the parsers have not been built yet, then restart Neovim.
+
+Iris/DTL LSP support includes nested document symbols, workspace symbols, definitions, references, rename, component/DTL completion, signature help, hover documentation, document links, semantic tokens, safe code actions, and on-demand formatting.
+
 ## Formatting
 
 Formatting runs automatically before saving when a formatter is available. You can also format manually with `<Space>g` in Normal or Visual mode.
@@ -147,7 +167,23 @@ Gitsigns shows changes in the sign column and enables these buffer-local shortcu
 | Toggle line highlighting | `<Space>htl` |
 | Toggle word diff         | `<Space>htw` |
 
-LazyGit opens with `<Space>lg`. Pull requests and GitHub/GitLab workflows remain available through the `gh` or `glab` commands inside LazyGit's terminal.
+LazyGit opens with `<Space>lg`. The Neovim integration uses a large rounded floating window and refreshes Gitsigns and Neo-tree after it exits.
+
+| Action | Shortcut |
+| --- | --- |
+| Open project LazyGit | `<Space>lg` |
+| Open LazyGit for the current project/file | `<Space>lG` |
+| Browse project commits | `<Space>lf` |
+| Browse current-file commits | `<Space>lF` |
+| Edit LazyGit config | `<Space>lc` |
+
+Inside LazyGit, the custom commands menu also includes:
+
+- `<C-p>`: browse GitHub pull requests with `gh`
+- `<C-g>`: browse GitLab merge requests with `glab`
+- `<C-o>`: create a GitHub pull request with `gh`
+
+Install and authenticate `gh` and/or `glab` if you want those commands available.
 
 ## Completion, comments, and editing helpers
 

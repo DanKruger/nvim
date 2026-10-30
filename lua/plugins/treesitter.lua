@@ -15,6 +15,10 @@ return {
 		local install_attempted = {}
 		local pending_by_buf = {}
 		local queue_scheduled = false
+		local local_languages = {
+			iris_pipeline = true,
+			dtl = true,
+		}
 
 		local function has_parser(lang)
 			local cached = parser_available[lang]
@@ -99,6 +103,13 @@ return {
 				end
 
 				if install_attempted[lang] then
+					return
+				end
+
+				-- Custom local parsers are installed explicitly by the Iris plugin.
+				-- Do not let the generic auto-installer build them during FileType,
+				-- which can race parser registration and crash Neovim.
+				if local_languages[lang] then
 					return
 				end
 
