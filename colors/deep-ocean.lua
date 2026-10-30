@@ -193,6 +193,8 @@ local groups = {
 	NoicePopupmenu = { fg = c.fg, bg = transparent },
 	NoicePopupmenuBorder = { fg = c.fg_dim, bg = transparent },
 	NoicePopupmenuSelected = { fg = c.fg_bright, bg = c.bg_active, bold = true },
+	LazyGitFloat = { fg = c.fg, bg = transparent },
+	LazyGitBorder = { fg = c.cyan, bg = transparent },
 	TroubleNormal = { fg = c.fg, bg = transparent },
 	TodoBgTODO = { fg = c.bg, bg = c.blue, bold = true },
 	TodoBgFIX = { fg = c.bg, bg = c.red, bold = true },
